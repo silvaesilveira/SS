@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title><%= title %></title>
+  <meta name="description" content="Silva & Silveira - Joias luxuosas em prata, ouro e banho. Design exclusivo e atendimento personalizado." />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <% include partials/header %>
+
+  <main class="container">
+    <section style="text-align:center; margin-bottom: 3rem;">
+      <h1 style="font-size: 3rem; color: #d4af37;">Bem-vindo à Silva & Silveira</h1>
+      <p style="font-size: 1.2rem; margin-top: 1rem;">Joias exclusivas em prata, ouro e banho com design luxuoso.</p>
+      <a href="/catalog" class="btn" style="margin-top: 2rem; display:inline-block;">Ver Catálogo</a>
+    </section>
+
+    <section>
+      <h2 style="color: #d4af37; margin-bottom: 1rem;">Produtos em Destaque</h2>
+      <div class="product-grid">
+        <% products = [
+          {id:1, name:'Anel de Prata', price:250, image:'/images/anel-prata.jpg', description:'Anel elegante em prata 925.'},
+          {id:2, name:'Colar de Ouro', price:1200, image:'/images/colar-ouro.jpg', description:'Colar sofisticado em ouro 18k.'},
+          {id:3, name:'Pulseira com Banho Dourado', price:450, image:'/images/pulseira-banho.jpg', description:'Pulseira com banho dourado de alta qualidade.'}
+        ] %>
+        <% products.forEach(product => { %>
+          <div class="product-card">
+            <img src="<%= product.image %>" alt="<%= product.name %>" />
+            <h3><%= product.name %></h3>
+            <p>R$ <%= product.price.toFixed(2).replace('.', ',') %></p>
+            <p><%= product.description %></p>
+            <form action="/cart/add" method="POST">
+              <input type="hidden" name="productId" value="<%= product.id %>" />
+              <input type="number" name="quantity" value="1" min="1" style="width:60px;" />
+              <button type="submit">Adicionar ao Carrinho</button>
+            </form>
+          </div>
+        <% }) %>
+      </div>
+    </section>
+  </main>
+
+  <% include partials/footer %>
+</body>
+</html>
