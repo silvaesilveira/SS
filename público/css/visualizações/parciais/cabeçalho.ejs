@@ -1,0 +1,19 @@
+<header>
+  <div class="container" style="display:flex; justify-content:space-between; align-items:center;">
+    <a href="/" class="logo">Silva & Silveira</a>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/catalog">Catálogo</a>
+      <a href="/cart">Carrinho (<%= cart.length %>)</a>
+      <a href="/reviews">Avaliações</a>
+      <a href="/contact">Contato</a>
+      <% if (user) { %>
+        <span>Olá, <%= user.name %></span>
+        <a href="/logout">Sair</a>
+      <% } else { %>
+        <a href="/login">Login</a>
+      <% } %>
+      <a href="/sac" title="Atendimento SAC via WhatsApp" target="_blank" rel="noopener noreferrer">SAC</a>
+    </nav>
+  </div>
+</header>
